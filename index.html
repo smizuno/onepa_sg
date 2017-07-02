@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Badminton Facility</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+<main>
+  <div class="container">
+    <br>
+    <div id="search_condition_wrapper">
+      <label class="checkbox-inline"><input type="checkbox" id="kampong_glam_cc_chk" value="">Kampong Glam CC</label>
+      <label class="checkbox-inline"><input type="checkbox" id="geylang_serai_cc_chk" value="">Geylang Serai CC</label>
+      <label class="checkbox-inline"><input type="checkbox" id="geylang_west_cc_chk" value="">Geylang West CC</label>
+      <label class="checkbox-inline"><input type="checkbox" id="tanjong_pagar_cc_chk" value="">Tanjong Pagar CC</label>
+      <br><br>
+      <label class="checkbox-inline"><input type="checkbox" id="week1_chk" value="" checked>This week</label>
+      <label class="checkbox-inline"><input type="checkbox" id="week2_chk" value="">Next week</label>
+      <label class="checkbox-inline"><input type="checkbox" id="week3_chk" value="">Week after week</label>
+      <br><br>
+      <button id="schedule_button" type="button" class="btn btn-primary">Search</button>
+    </div>
+
+    <div id="loading_progress_wrapper" style="display:none;">
+      <div id="progress" class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+          Now Loading
+        </div>
+      </div>
+      <p>
+        Normally it takes more than 5mins.<br>
+        During loading the data, Do not turn your phone into sleep mode.
+      </p>
+    </div>
+
+    <hr>
+
+    <div id="view_condition_wrapper" style="display:none;">
+      <label class="checkbox-inline"><input type="checkbox" id="monday_chk" value="2" checked>Monday</label>
+      <label class="checkbox-inline"><input type="checkbox" id="tuesday_chk" value="3" checked>Tuesday</label>
+      <label class="checkbox-inline"><input type="checkbox" id="wednsday_chk" value="4" checked>Wednesday</label>
+      <label class="checkbox-inline"><input type="checkbox" id="thursday_chk" value="5" checked>Thursday</label>
+      <label class="checkbox-inline"><input type="checkbox" id="friday_chk" value="6" checked>Friday</label>
+      <label class="checkbox-inline"><input type="checkbox" id="saturday_chk" value="7" checked>Saturday</label>
+      <label class="checkbox-inline"><input type="checkbox" id="sunday_chk" value="8" checked>Sunday</label>
+      <br><br>
+    </div>
+
+    <div class="table-responsive">
+      <table border="1">
+        <tr class="kampong_glam_cc" style="display:none;"><td>Kampong Glam CC<br>Court 1</td><td id="kampong_glam_cc_11" class="badminton_schedule"></td><td id="kampong_glam_cc_12" class="badminton_schedule"></td><td id="kampong_glam_cc_13" class="badminton_schedule"></td></tr>
+        <tr class="kampong_glam_cc" style="display:none;"><td>Kampong Glam CC<br>Court 2</td><td id="kampong_glam_cc_21" class="badminton_schedule"></td><td id="kampong_glam_cc_22" class="badminton_schedule"></td><td id="kampong_glam_cc_23" class="badminton_schedule"></td></tr>
+        <tr class="kampong_glam_cc" style="display:none;"><td>Kampong Glam CC<br>Court 3</td><td id="kampong_glam_cc_31" class="badminton_schedule"></td><td id="kampong_glam_cc_32" class="badminton_schedule"></td><td id="kampong_glam_cc_33" class="badminton_schedule"></td></tr>
+        <tr class="geylang_serai_cc" style="display:none;"><td>Geylang Serai CC<br>Court 1</td><td id="geylang_serai_cc_11" class="badminton_schedule"></td><td id="geylang_serai_cc_12" class="badminton_schedule"></td><td id="geylang_serai_cc_13" class="badminton_schedule"></td></tr>
+        <tr class="geylang_serai_cc" style="display:none;"><td>Geylang Serai CC<br>Court 2</td><td id="geylang_serai_cc_21" class="badminton_schedule"></td><td id="geylang_serai_cc_22" class="badminton_schedule"></td><td id="geylang_serai_cc_23" class="badminton_schedule"></td></tr>
+        <tr class="geylang_west_cc" style="display:none;"><td>Geylang West CC<br>Court 1</td><td id="geylang_west_cc_11" class="badminton_schedule"></td><td id="geylang_west_cc_12" class="badminton_schedule"></td><td id="geylang_west_cc_13" class="badminton_schedule"></td></tr>
+        <tr class="geylang_west_cc" style="display:none;"><td>Geylang West CC<br>Court 2</td><td id="geylang_west_cc_21" class="badminton_schedule"></td><td id="geylang_west_cc_22" class="badminton_schedule"></td><td id="geylang_west_cc_23" class="badminton_schedule"></td></tr>
+        <tr class="tanjong_pagar_cc" style="display:none;"><td>Tanjong Pagar CC<br>Court 1</td><td id="tanjong_pagar_cc_11" class="badminton_schedule"></td><td id="tanjong_pagar_cc_12" class="badminton_schedule"></td><td id="tanjong_pagar_cc_13" class="badminton_schedule"></td></tr>
+        <tr class="tanjong_pagar_cc" style="display:none;"><td>Tanjong Pagar CC<br>Court 2</td><td id="tanjong_pagar_cc_21" class="badminton_schedule"></td><td id="tanjong_pagar_cc_22" class="badminton_schedule"></td><td id="tanjong_pagar_cc_23" class="badminton_schedule"></td></tr>
+      </table>
+    </div>
+    <br>
+    <button type="button" class="btn btn-success" onclick="window.open('https://one.pa.gov.sg/CRMSPortal/CRMSPortal.portal?_nfpb=true&_st=&_windowLabel=CRMSPortal_1&_urlType=render&_mode=view&wlpCRMSPortal_1_action=RBMFacilityPublicBooking&_pageLabel=CRMSPortal_page_1')">Open onePA</button>
+    <br>
+  </div>
+</main>
+
+<script>
+
+var API_URL = "http://54.90.65.235/api/onepa";
+
+var KAMPONG_GLAM_CC_LOCATION = 1392451;
+var KAMPONG_GLAM_CC_PROFILE = 1348;
+var KAMPONG_GLAM_CC_COURT_1 = 785194;
+var KAMPONG_GLAM_CC_COURT_2 = 785195;
+var KAMPONG_GLAM_CC_COURT_3 = 785196;
+
+var GEYLANG_SERAI_CC_LOCATION = 1391619;
+var GEYLANG_SERAI_CC_PROFILE = 877;
+var GEYLANG_SERAI_CC_COURT_1 = 783505;
+var GEYLANG_SERAI_CC_COURT_2 = 783506;
+
+var GEYLANG_WEST_CC_LOCATION = 1391659;
+var GEYLANG_WEST_CC_PROFILE = 912;
+var GEYLANG_WEST_CC_COURT_1 = 783607;
+var GEYLANG_WEST_CC_COURT_2 = 783608;
+
+var TANJONG_PAGAR_CC_LOCATION = 1394495;
+var TANJONG_PAGAR_CC_PROFILE = 2538;
+var TANJONG_PAGAR_CC_COURT_1 = 789128;
+var TANJONG_PAGAR_CC_COURT_2 = 789129;
+
+
+var post_api = function(location,profile,court,date,isPost){
+  return new Promise(function(resolve, reject){
+    if(!isPost) return resolve("");
+    $.post(API_URL, { date: date, location: location, profile: profile, court: court })
+    .done(function(data) {
+      resolve(data[0].table);
+    })
+    .fail(function() {
+      reject('error');
+    });
+  });
+}
+
+var now = new Date();
+var today = ( "0"+now.getDate() ).slice(-2) + "-" + ( "0"+( now.getMonth()+1 ) ).slice(-2)+ "-" + now.getFullYear();
+var nextweek = new Date();
+nextweek.setDate(now.getDate() + Number(7));
+var nextweek_sg = ( "0"+nextweek.getDate() ).slice(-2) + "-" + ( "0"+( nextweek.getMonth()+1 ) ).slice(-2)+ "-" + nextweek.getFullYear();
+var nextnextweek = new Date();
+nextnextweek.setDate(now.getDate() + Number(14));
+var nextnextweek_sg = ( "0"+nextnextweek.getDate() ).slice(-2) + "-" + ( "0"+( nextnextweek.getMonth()+1 ) ).slice(-2)+ "-" + nextnextweek.getFullYear();
+
+
+$('#monday_chk,#tuesday_chk,#wednsday_chk,#thursday_chk,#friday_chk,#saturday_chk,#sunday_chk').on('change', function () {
+  var col = $(this).prop('value');
+  var td = $(".badminton_schedule td:nth-child(" + col + ")");
+  $(this).prop('checked') ? td.show() : td.hide();
+});
+
+$("#schedule_button").click(function() {
+
+  var isPostSchedule1 = $('#kampong_glam_cc_chk').is(":checked");
+  var isPostSchedule2 = $('#geylang_serai_cc_chk').is(":checked");
+  var isPostSchedule4 = $('#geylang_west_cc_chk').is(":checked");
+  var isPostSchedule3 = $('#tanjong_pagar_cc_chk').is(":checked");
+  var isWeek1 = $('#week1_chk').is(":checked");
+  var isWeek2 = $('#week2_chk').is(":checked");
+  var isWeek3 = $('#week3_chk').is(":checked");
+
+  $("#search_condition_wrapper").hide();
+  $("#loading_progress_wrapper").show();
+  if (isPostSchedule1) { $(".kampong_glam_cc").show(); }
+  if (isPostSchedule2) { $(".geylang_serai_cc").show(); }
+  if (isPostSchedule4) { $(".geylang_west_cc").show(); }
+  if (isPostSchedule3) { $(".tanjong_pagar_cc").show(); }
+
+
+
+  post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_1,today,isPostSchedule1 && isWeek1).then(function(data){
+    $("#kampong_glam_cc_11").html(data);
+    return post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_1,nextweek_sg,isPostSchedule1 && isWeek2);
+  }).then(function(data){
+    $("#kampong_glam_cc_12").html(data);
+    return post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_1,nextnextweek_sg,isPostSchedule1 && isWeek3);
+  }).then(function(data){
+    $("#kampong_glam_cc_13").html(data);
+    return post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_2,today,isPostSchedule1 && isWeek1);
+  }).then(function(data){
+    $("#kampong_glam_cc_21").html(data);
+    return post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_2,nextweek_sg,isPostSchedule1 && isWeek2);
+  }).then(function(data){
+    $("#kampong_glam_cc_22").html(data);
+    return post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_2,nextnextweek_sg,isPostSchedule1 && isWeek3);
+  }).then(function(data){
+    $("#kampong_glam_cc_23").html(data);
+    return post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_3,today,isPostSchedule1 && isWeek1);
+  }).then(function(data){
+    $("#kampong_glam_cc_31").html(data);
+    return post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_3,nextweek_sg,isPostSchedule1 && isWeek2);
+  }).then(function(data){
+    $("#kampong_glam_cc_32").html(data);
+    return post_api(KAMPONG_GLAM_CC_LOCATION,KAMPONG_GLAM_CC_PROFILE,KAMPONG_GLAM_CC_COURT_3,nextnextweek_sg,isPostSchedule1 && isWeek3);
+  }).then(function(data){
+    $("#kampong_glam_cc_33").html(data);
+    return post_api(GEYLANG_SERAI_CC_LOCATION,GEYLANG_SERAI_CC_PROFILE,GEYLANG_SERAI_CC_COURT_1,today,isPostSchedule2 && isWeek1);
+  }).then(function(data){
+    $("#geylang_serai_cc_11").html(data);
+    return post_api(GEYLANG_SERAI_CC_LOCATION,GEYLANG_SERAI_CC_PROFILE,GEYLANG_SERAI_CC_COURT_1,nextweek_sg,isPostSchedule2 && isWeek2);
+  }).then(function(data){
+    $("#geylang_serai_cc_12").html(data);
+    return post_api(GEYLANG_SERAI_CC_LOCATION,GEYLANG_SERAI_CC_PROFILE,GEYLANG_SERAI_CC_COURT_1,nextnextweek_sg,isPostSchedule2 && isWeek3);
+  }).then(function(data){
+    $("#geylang_serai_cc_13").html(data);
+    return post_api(GEYLANG_SERAI_CC_LOCATION,GEYLANG_SERAI_CC_PROFILE,GEYLANG_SERAI_CC_COURT_2,today,isPostSchedule2 && isWeek1);
+  }).then(function(data){
+    $("#geylang_serai_cc_21").html(data);
+    return post_api(GEYLANG_SERAI_CC_LOCATION,GEYLANG_SERAI_CC_PROFILE,GEYLANG_SERAI_CC_COURT_2,nextweek_sg,isPostSchedule2 && isWeek2);
+  }).then(function(data){
+    $("#geylang_serai_cc_22").html(data);
+    return post_api(GEYLANG_SERAI_CC_LOCATION,GEYLANG_SERAI_CC_PROFILE,GEYLANG_SERAI_CC_COURT_2,nextnextweek_sg,isPostSchedule2 && isWeek3);
+  }).then(function(data){
+    $("#geylang_serai_cc_23").html(data);
+    return post_api(GEYLANG_WEST_CC_LOCATION,GEYLANG_WEST_CC_PROFILE,GEYLANG_WEST_CC_COURT_1,today,isPostSchedule4 && isWeek1);
+  }).then(function(data){
+    $("#geylang_west_cc_11").html(data);
+    return post_api(GEYLANG_WEST_CC_LOCATION,GEYLANG_WEST_CC_PROFILE,GEYLANG_WEST_CC_COURT_1,nextweek_sg,isPostSchedule4 && isWeek2);
+  }).then(function(data){
+    $("#geylang_west_cc_12").html(data);
+    return post_api(GEYLANG_WEST_CC_LOCATION,GEYLANG_WEST_CC_PROFILE,GEYLANG_WEST_CC_COURT_1,nextnextweek_sg,isPostSchedule4 && isWeek3);
+  }).then(function(data){
+    $("#geylang_west_cc_13").html(data);
+    return post_api(GEYLANG_WEST_CC_LOCATION,GEYLANG_WEST_CC_PROFILE,GEYLANG_WEST_CC_COURT_2,today,isPostSchedule4 && isWeek1);
+  }).then(function(data){
+    $("#geylang_west_cc_21").html(data);
+    return post_api(GEYLANG_WEST_CC_LOCATION,GEYLANG_WEST_CC_PROFILE,GEYLANG_WEST_CC_COURT_2,nextweek_sg,isPostSchedule4 && isWeek2);
+  }).then(function(data){
+    $("#geylang_west_cc_22").html(data);
+    return post_api(GEYLANG_WEST_CC_LOCATION,GEYLANG_WEST_CC_PROFILE,GEYLANG_WEST_CC_COURT_2,nextnextweek_sg,isPostSchedule4 && isWeek3);
+  }).then(function(data){
+    $("#geylang_west_cc_23").html(data);
+
+
+
+
+
+
+
+
+
+
+
+
+    return post_api(TANJONG_PAGAR_CC_LOCATION,TANJONG_PAGAR_CC_PROFILE,TANJONG_PAGAR_CC_COURT_1,today,isPostSchedule3 && isWeek1);
+  }).then(function(data){
+    $("#tanjong_pagar_cc_11").html(data);
+    return post_api(TANJONG_PAGAR_CC_LOCATION,TANJONG_PAGAR_CC_PROFILE,TANJONG_PAGAR_CC_COURT_1,nextweek_sg,isPostSchedule3 && isWeek2);
+  }).then(function(data){
+    $("#tanjong_pagar_cc_12").html(data);
+    return post_api(TANJONG_PAGAR_CC_LOCATION,TANJONG_PAGAR_CC_PROFILE,TANJONG_PAGAR_CC_COURT_1,nextnextweek_sg,isPostSchedule3 && isWeek3);
+  }).then(function(data){
+    $("#tanjong_pagar_cc_13").html(data);
+    return post_api(TANJONG_PAGAR_CC_LOCATION,TANJONG_PAGAR_CC_PROFILE,TANJONG_PAGAR_CC_COURT_2,today,isPostSchedule3 && isWeek1);
+  }).then(function(data){
+    $("#tanjong_pagar_cc_21").html(data);
+    return post_api(TANJONG_PAGAR_CC_LOCATION,TANJONG_PAGAR_CC_PROFILE,TANJONG_PAGAR_CC_COURT_2,nextweek_sg,isPostSchedule3 && isWeek2);
+  }).then(function(data){
+    $("#tanjong_pagar_cc_22").html(data);
+    return post_api(TANJONG_PAGAR_CC_LOCATION,TANJONG_PAGAR_CC_PROFILE,TANJONG_PAGAR_CC_COURT_2,nextnextweek_sg,isPostSchedule3 && isWeek3);
+  }).then(function(data){
+    $("#tanjong_pagar_cc_23").html(data);
+    $("#search_condition_wrapper").show();
+    $("#view_condition_wrapper").show();
+    $("#loading_progress_wrapper").hide();
+  }).catch(function(error){
+    console.log(error);
+    $("#search_condition_wrapper").show();
+    $("#view_condition_wrapper").show();
+    $("#loading_progress_wrapper").hide();
+  });
+
+});
+
+</script>
+</body>
+</html>
